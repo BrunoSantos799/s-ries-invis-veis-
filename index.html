@@ -8,7 +8,7 @@
 <meta property="og:title" content="Séries Invisíveis — inscrições fechadas">
 <meta property="og:description" content="O Claude escreve, desenha e anima. Você só posta. Entre na lista prioritária para a próxima abertura.">
 <meta property="og:image" content="capa-episodio.jpg">
-<meta name="theme-color" content="#0D0E12">
+<meta name="theme-color" content="#0B1020">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap">
 
@@ -21,13 +21,15 @@
 <style>
 /* Layout: uma coluna estreita, pensada para quem chega pelo celular via link da bio */
 :root {
-  --bg: #0D0E12;
-  --surface: #16181E;
-  --line: #2A2C35;
-  --fg: #F3F1EC;
-  --muted: #A9ABB3;
-  --accent: #FF6B45;
-  --on-accent: #0D0E12;
+  --bg: #0B1020;
+  --surface: #131A2E;
+  --line: #253050;
+  --fg: #F4F1EA;
+  --muted: #A7B0C6;
+  --accent: #FFC857;
+  --accent-soft: rgba(255, 200, 87, 0.08);
+  --gold: #FF9A6A;
+  --on-accent: #0B1020;
   --ok: #7FD6A4;
   --error: #FF8A80;
   --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
@@ -51,7 +53,7 @@ img, video { max-width: 100%; }
 .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .brand { font-family: var(--display); font-weight: 700; font-size: 19px; }
 .brand span, .accent { color: var(--accent); }
-.badge { border: 1px solid var(--accent); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; }
+.badge { border: 1px solid var(--gold); color: var(--gold); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; }
 .hero { display: flex; flex-direction: column; gap: 20px; max-width: 720px; }
 h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
 h1 { font-size: clamp(38px, 6vw, 62px); line-height: 1.04; font-weight: 700; }
@@ -65,7 +67,7 @@ p { margin: 0; }
 .btn:focus-visible, input:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
 .btn[disabled] { opacity: 0.6; cursor: wait; }
 .checks { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14.5px; color: var(--muted); }
-.eyebrow { font-size: 13px; letter-spacing: 0.12em; font-weight: 600; color: var(--accent); text-transform: uppercase; }
+.eyebrow { font-size: 13px; letter-spacing: 0.12em; font-weight: 600; color: var(--gold); text-transform: uppercase; }
 .section { display: flex; flex-direction: column; gap: 24px; }
 .series { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
 .serie { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
@@ -76,7 +78,7 @@ p { margin: 0; }
 .serie a { color: var(--fg); font-weight: 600; font-size: 15px; }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
 .steps li { border-top: 3px solid var(--line); padding-top: 14px; display: flex; flex-direction: column; gap: 4px; }
-.steps li:first-child { border-top-color: var(--accent); }
+.steps li:first-child { border-top-color: var(--gold); }
 .steps strong { font-family: var(--display); font-size: 19px; }
 .steps span { color: var(--muted); font-size: 15.5px; }
 .list { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(24px, 5vw, 40px); display: flex; flex-direction: column; gap: 18px; }
@@ -88,7 +90,7 @@ input {
   min-height: 50px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line);
   background: var(--bg); color: var(--fg); font-size: 17px; font-family: var(--body); width: 100%;
 }
-input::placeholder { color: #6E7079; }
+input::placeholder { color: #6F7A96; }
 .status { min-height: 1.5em; font-size: 15px; }
 .status.ok { color: var(--ok); }
 .status.error { color: var(--error); }
@@ -106,7 +108,7 @@ input::placeholder { color: #6E7079; }
 .em-breve {
   display: flex; flex-direction: column; gap: 4px; max-width: 34em;
   padding: 14px 18px; border-radius: 14px; border: 1px dashed var(--accent);
-  background: rgba(255, 107, 69, 0.08); font-size: 15.5px; color: var(--muted);
+  background: var(--accent-soft); font-size: 15.5px; color: var(--muted);
 }
 .em-breve strong { color: var(--fg); }
 @media (prefers-reduced-motion: reduce) { .ponto { animation: none; } }
