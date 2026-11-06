@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Séries Invisíveis</title>
+<meta name="description" content="Em breve: o curso para criar séries animadas para o Instagram feitas inteiras pelo Claude, sem aparecer.">
+<meta property="og:title" content="Séries Invisíveis — em breve">
+<meta property="og:description" content="O Claude escreve, desenha e anima. Você só posta. Entre na lista de espera.">
+<meta property="og:image" content="capa-episodio.jpg">
+<meta name="theme-color" content="#0D0E12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+
+<!-- CONTADOR DE ACESSOS (GoatCounter)
+     Depois de criar sua conta grátis em goatcounter.com, troque SEU-NOME pelo nome
+     que você escolheu e apague as linhas de comentário em volta da tag abaixo.
+<script data-goatcounter="https://SEU-NOME.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+-->
+
+<style>
+/* Layout: uma coluna estreita, pensada para quem chega pelo celular via link da bio */
+:root {
+  --bg: #0D0E12;
+  --surface: #16181E;
+  --line: #2A2C35;
+  --fg: #F3F1EC;
+  --muted: #A9ABB3;
+  --accent: #FF6B45;
+  --on-accent: #0D0E12;
+  --ok: #7FD6A4;
+  --error: #FF8A80;
+  --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --body: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+img, video { max-width: 100%; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 24px 64px; display: flex; flex-direction: column; gap: 72px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 19px; }
+.brand span, .accent { color: var(--accent); }
+.badge { border: 1px solid var(--accent); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; }
+.hero { display: flex; flex-direction: column; gap: 20px; max-width: 720px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+h1 { font-size: clamp(38px, 6vw, 62px); line-height: 1.04; font-weight: 700; }
+h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; font-weight: 700; }
+p { margin: 0; }
+.lead { font-size: 19px; color: var(--muted); max-width: 34em; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border-radius: 999px; font-weight: 600; font-size: 17px; text-decoration: none; border: 0; cursor: pointer; font-family: var(--body); }
+.btn-main { background: var(--accent); color: var(--on-accent); }
+.btn-ghost { border: 1px solid var(--line); color: var(--fg); background: transparent; }
+.btn:focus-visible, input:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+.btn[disabled] { opacity: 0.6; cursor: wait; }
+.checks { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14.5px; color: var(--muted); }
+.eyebrow { font-size: 13px; letter-spacing: 0.12em; font-weight: 600; color: var(--accent); text-transform: uppercase; }
+.section { display: flex; flex-direction: column; gap: 24px; }
+.series { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.serie { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.serie video { width: 100%; max-width: 380px; aspect-ratio: 9 / 16; border-radius: 26px; border: 1px solid var(--line); background: var(--surface); display: block; }
+.serie-text { display: flex; flex-direction: column; gap: 6px; }
+.serie h3 { font-size: 22px; }
+.serie p { color: var(--muted); font-size: 15.5px; }
+.serie a { color: var(--fg); font-weight: 600; font-size: 15px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+.steps li { border-top: 3px solid var(--line); padding-top: 14px; display: flex; flex-direction: column; gap: 4px; }
+.steps li:first-child { border-top-color: var(--accent); }
+.steps strong { font-family: var(--display); font-size: 19px; }
+.steps span { color: var(--muted); font-size: 15.5px; }
+.list { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(24px, 5vw, 40px); display: flex; flex-direction: column; gap: 18px; }
+.list > p { color: var(--muted); max-width: 36em; }
+form { display: flex; flex-direction: column; gap: 14px; max-width: 520px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 14.5px; font-weight: 600; }
+input {
+  min-height: 50px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); font-size: 17px; font-family: var(--body); width: 100%;
+}
+input::placeholder { color: #6E7079; }
+.status { min-height: 1.5em; font-size: 15px; }
+.status.ok { color: var(--ok); }
+.status.error { color: var(--error); }
+[hidden] { display: none !important; }
+.thanks {
+  position: relative; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  max-width: 520px; padding: 20px 22px; border-radius: 16px;
+  border: 1px solid var(--ok); background: rgba(127, 214, 164, 0.08);
+  animation: pop 420ms cubic-bezier(.2, .9, .3, 1.3) both;
+}
+.thanks h3 { font-size: 22px; outline: none; }
+.thanks p { color: var(--muted); }
+.thanks-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1 1 220px; }
+.check { flex: 0 0 auto; width: 56px; height: 56px; }
+.check circle { stroke: var(--ok); stroke-width: 3; fill: none; stroke-dasharray: 151; stroke-dashoffset: 151; animation: draw 600ms ease-out 120ms forwards; }
+.check path { stroke: var(--ok); stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 360ms ease-out 620ms forwards; }
+.confete { position: absolute; left: 46px; top: 46px; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; opacity: 0; animation: burst 900ms ease-out 500ms forwards; }
+@keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes burst {
+  0% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+  100% { opacity: 0; transform: translate(var(--x), var(--y)) rotate(var(--r)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .thanks, .check circle, .check path { animation: none; stroke-dashoffset: 0; }
+  .confete { display: none; }
+}
+.follow { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; color: var(--muted); }
+.follow a { color: var(--fg); font-weight: 600; }
+footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <span class="brand">Séries <span>Invisíveis</span></span>
+    <span class="badge">EM BREVE</span>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">Curso em produção</p>
+    <h1>O Claude escreve, desenha e anima. <span class="accent">Você só posta.</span></h1>
+    <p class="lead">Um curso para criar séries animadas para o Instagram que o público vota e acompanha, sem aparecer, sem desenhar e sem gravar a sua voz.</p>
+    <div class="actions">
+      <a class="btn btn-main" href="#lista">Quero ser avisado</a>
+      <a class="btn btn-ghost" href="#episodios">Ver os episódios</a>
+    </div>
+    <div class="checks">
+      <span>✓ Sem câmera</span><span>✓ Sem editor de vídeo</span><span>✓ Feito 100% com IA</span>
+    </div>
+  </section>
+
+  <section class="section" id="episodios">
+    <p class="eyebrow">Feito com o método</p>
+    <h2>Duas séries, o mesmo método</h2>
+    <p class="lead">Episódios reais, feitos inteiros pelo Claude: roteiro, desenho, animação e legenda. Ligue o som.</p>
+    <div class="series">
+      <article class="serie">
+        <video src="episodio.mp4" poster="capa-episodio.jpg" controls playsinline preload="metadata" aria-label="Diário do Kauã, parte 5"></video>
+        <div class="serie-text">
+          <h3>Diário do Kauã</h3>
+          <p>Um garoto de 16 anos tenta juntar R$ 100 mil. No fim de cada episódio, o público vota no próximo passo.</p>
+          <a href="https://www.tiktok.com/@kau.100k" target="_blank" rel="noopener">@kau.100k no TikTok</a>
+        </div>
+      </article>
+      <article class="serie">
+        <video src="na-regua-ep3.mp4" poster="capa-na-regua.jpg" controls playsinline preload="metadata" aria-label="Na Régua, episódio 3"></video>
+        <div class="serie-text">
+          <h3>Na Régua</h3>
+          <p>Gui tem 7 dias para pagar uma dívida da barbearia. Cada curtida e comentário vira dinheiro na história.</p>
+          <a href="https://www.instagram.com/decideai.historias/" target="_blank" rel="noopener">@decideai.historias</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">O que vem aí</p>
+    <h2>Do zero ao episódio postado</h2>
+    <ol class="steps">
+      <li><strong>Sua série</strong><span>Escolher o formato, criar os personagens e a temporada.</span></li>
+      <li><strong>O estúdio</strong><span>Montar um projeto no Claude que lembra da sua série a cada episódio.</span></li>
+      <li><strong>O episódio</strong><span>Roteiro, animação, legenda e narração com IA, prontos para postar.</span></li>
+      <li><strong>O público</strong><span>Finais com votação que fazem as pessoas comentarem e voltarem.</span></li>
+    </ol>
+  </section>
+
+  <section class="list" id="lista">
+    <p class="eyebrow">Lista de espera</p>
+    <h2>Seja o primeiro a saber</h2>
+    <p>Deixe seu nome e e-mail e receba o aviso assim que o curso abrir.</p>
+
+    <form id="waitlist" novalidate>
+      <div class="field">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome">
+      </div>
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="voce@email.com" required>
+      </div>
+      <button class="btn btn-main" type="submit" id="enviar">Entrar na lista de espera</button>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="thanks" id="obrigado" hidden>
+      <svg class="check" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24"></circle><path d="M17 29 l7 7 l15 -16"></path></svg>
+      <div class="thanks-text">
+        <h3 id="obrigado-titulo" tabindex="-1">Pronto, você está na lista!</h3>
+        <p>Você vai receber o aviso no seu e-mail assim que o curso abrir.</p>
+      </div>
+      <span class="confete" style="background:#FF6B45;--x:-70px;--y:-60px;--r:200deg"></span>
+      <span class="confete" style="background:#7FD6A4;--x:60px;--y:-70px;--r:-160deg"></span>
+      <span class="confete" style="background:#F5C76A;--x:90px;--y:-20px;--r:120deg"></span>
+      <span class="confete" style="background:#7AA7FF;--x:-90px;--y:-10px;--r:-220deg"></span>
+      <span class="confete" style="background:#FF6B45;--x:30px;--y:-90px;--r:300deg"></span>
+      <span class="confete" style="background:#F3F1EC;--x:-40px;--y:-95px;--r:-90deg"></span>
+      <span class="confete" style="background:#7FD6A4;--x:-100px;--y:-55px;--r:140deg"></span>
+      <span class="confete" style="background:#F5C76A;--x:100px;--y:-60px;--r:-260deg"></span>
+    </div>
+
+    <div class="follow">
+      <span>Enquanto isso, acompanhe as séries:</span>
+      <a href="https://www.tiktok.com/@kau.100k" target="_blank" rel="noopener">@kau.100k no TikTok</a>
+      <a href="https://www.instagram.com/decideai.historias/" target="_blank" rel="noopener">@decideai.historias</a>
+    </div>
+  </section>
+
+  <footer>© 2026 · Séries Invisíveis · Estúdio Invisível</footer>
+
+</div>
+
+<script>
+(function () {
+  // Envia as respostas direto para o Google Forms.
+  var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdN0H2CM-rDaw42AZx2v8pcqPVpFkF1qbTQnCRwnArqiQX8yg/formResponse';
+  var CAMPO_NOME = 'entry.103417693';
+  var CAMPO_EMAIL = 'entry.714344138';
+
+  var form = document.getElementById('waitlist');
+  var status = document.getElementById('status');
+  var botao = document.getElementById('enviar');
+  var obrigado = document.getElementById('obrigado');
+
+  function emailValido(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nome = document.getElementById('nome').value.trim();
+    var email = document.getElementById('email').value.trim();
+    status.className = 'status';
+    if (!emailValido(email)) {
+      status.textContent = 'Digite um e-mail válido, por exemplo voce@email.com.';
+      status.className = 'status error';
+      document.getElementById('email').focus();
+      return;
+    }
+    botao.disabled = true;
+    botao.textContent = 'Enviando…';
+    var dados = new URLSearchParams();
+    dados.append(CAMPO_NOME, nome);
+    dados.append(CAMPO_EMAIL, email);
+    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: dados })
+      .then(function () {
+        form.hidden = true;
+        obrigado.hidden = false;
+        var titulo = document.getElementById('obrigado-titulo');
+        if (titulo) titulo.focus({ preventScroll: true });
+      })
+      .catch(function () {
+        status.textContent = 'Não foi possível enviar agora. Verifique sua internet e tente de novo.';
+        status.className = 'status error';
+        botao.disabled = false;
+        botao.textContent = 'Entrar na lista de espera';
+      });
+  });
+})();
+</script>
+</body>
+</html>
