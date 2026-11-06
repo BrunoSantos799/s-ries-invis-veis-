@@ -93,6 +93,23 @@ input::placeholder { color: #6E7079; }
 .status.ok { color: var(--ok); }
 .status.error { color: var(--error); }
 [hidden] { display: none !important; }
+.aviso {
+  display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; text-align: left;
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
+  background: var(--accent); color: var(--on-accent); font-size: 14.5px; line-height: 1.4;
+}
+.aviso strong { color: var(--on-accent); }
+.ponto { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; background: var(--on-accent); animation: pulso 1.6s ease-in-out infinite; }
+@keyframes pulso { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+.em-breve {
+  display: flex; flex-direction: column; gap: 4px; max-width: 34em;
+  padding: 14px 18px; border-radius: 14px; border: 1px dashed var(--accent);
+  background: rgba(255, 107, 69, 0.08); font-size: 15.5px; color: var(--muted);
+}
+.em-breve strong { color: var(--fg); }
+@media (prefers-reduced-motion: reduce) { .ponto { animation: none; } }
 .thanks {
   position: relative; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
   max-width: 520px; padding: 20px 22px; border-radius: 16px;
@@ -123,19 +140,27 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px
 </style>
 </head>
 <body>
+<div class="aviso" role="note">
+  <span class="ponto" aria-hidden="true"></span>
+  <span><strong>Lançamento em breve.</strong> O curso ainda não está à venda. Entre na lista para saber a data primeiro.</span>
+</div>
 <div class="wrap">
 
   <header class="top">
     <span class="brand">Séries <span>Invisíveis</span></span>
-    <span class="badge">EM BREVE</span>
+    <span class="badge">LANÇAMENTO EM BREVE</span>
   </header>
 
   <section class="hero">
-    <p class="eyebrow">Curso em produção</p>
+    <p class="eyebrow">Novo curso · Em breve</p>
     <h1>O Claude escreve, desenha e anima. <span class="accent">Você só posta.</span></h1>
     <p class="lead">Um curso para criar séries animadas para o Instagram que o público vota e acompanha, sem aparecer, sem desenhar e sem gravar a sua voz.</p>
+    <div class="em-breve">
+      <strong>Ainda não está à venda.</strong>
+      <span>O curso está em produção e será lançado em breve. Quem estiver na lista de espera recebe a data de lançamento antes de todo mundo.</span>
+    </div>
     <div class="actions">
-      <a class="btn btn-main" href="#lista">Quero ser avisado</a>
+      <a class="btn btn-main" href="#lista">Quero ser avisado do lançamento</a>
       <a class="btn btn-ghost" href="#episodios">Ver os episódios</a>
     </div>
     <div class="checks">
@@ -168,7 +193,7 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px
   </section>
 
   <section class="section">
-    <p class="eyebrow">O que vem aí</p>
+    <p class="eyebrow">O que o curso vai ensinar</p>
     <h2>Do zero ao episódio postado</h2>
     <ol class="steps">
       <li><strong>Sua série</strong><span>Escolher o formato, criar os personagens e a temporada.</span></li>
@@ -179,9 +204,9 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px
   </section>
 
   <section class="list" id="lista">
-    <p class="eyebrow">Lista de espera</p>
-    <h2>Seja o primeiro a saber</h2>
-    <p>Deixe seu nome e e-mail e receba o aviso assim que o curso abrir.</p>
+    <p class="eyebrow">Lista de espera · Lançamento em breve</p>
+    <h2>Seja o primeiro a saber do lançamento</h2>
+    <p>O curso ainda não abriu. Deixe seu nome e e-mail e receba o aviso assim que as inscrições começarem.</p>
 
     <form id="waitlist" novalidate>
       <div class="field">
@@ -200,7 +225,7 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px
       <svg class="check" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24"></circle><path d="M17 29 l7 7 l15 -16"></path></svg>
       <div class="thanks-text">
         <h3 id="obrigado-titulo" tabindex="-1">Pronto, você está na lista!</h3>
-        <p>Você vai receber o aviso no seu e-mail assim que o curso abrir.</p>
+        <p>O curso ainda não abriu. Você vai receber a data de lançamento no seu e-mail.</p>
       </div>
       <span class="confete" style="background:#FF6B45;--x:-70px;--y:-60px;--r:200deg"></span>
       <span class="confete" style="background:#7FD6A4;--x:60px;--y:-70px;--r:-160deg"></span>
@@ -219,7 +244,7 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px
     </div>
   </section>
 
-  <footer>© 2026 · Séries Invisíveis · Estúdio Invisível</footer>
+  <footer>© 2026 · Séries Invisíveis · Estúdio Invisível · Curso em produção, lançamento em breve. Data e preço ainda não definidos.</footer>
 
 </div>
 
