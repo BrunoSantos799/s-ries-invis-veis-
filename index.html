@@ -31,6 +31,8 @@
   --gold: #8FD3FF;
   --on-accent: #0B1020;
   --ok: #7FD6A4;
+  --fechado: #D63A40;
+  --fechado-texto: #FF7A7F;
   --error: #FF8A80;
   --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --body: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -134,10 +136,11 @@ input::placeholder { color: #6F7A96; }
   margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
   margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
   padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
-  background: var(--accent); color: var(--on-accent); font-size: 14.5px; line-height: 1.4;
+  background: var(--fechado); color: #FFFFFF; font-size: 14.5px; line-height: 1.4;
 }
-.aviso strong { color: var(--on-accent); }
-.ponto { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; background: var(--on-accent); animation: pulso 1.6s ease-in-out infinite; }
+.aviso strong { color: #FFFFFF; }
+.ponto { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF; animation: pulso 1.6s ease-in-out infinite; }
+.fechado { color: var(--fechado-texto); font-weight: 600; }
 @keyframes pulso { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
 .em-breve {
   display: flex; flex-direction: column; gap: 4px; max-width: 34em;
@@ -253,7 +256,7 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px
   <section class="list" id="lista">
     <p class="eyebrow">Lista de espera prioritária</p>
     <h2>Garanta prioridade na próxima abertura</h2>
-    <p>As inscrições estão fechadas e a próxima abertura terá vagas limitadas. Deixe seu nome e e-mail para ser avisado antes de todo mundo.</p>
+    <p><span class="fechado">As inscrições estão fechadas</span> e a próxima abertura terá vagas limitadas. Deixe seu nome e e-mail para ser avisado antes de todo mundo.</p>
 
     <form id="waitlist" novalidate>
       <div class="field">
@@ -291,7 +294,7 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px
     </div>
   </section>
 
-  <footer>© 2026 · Séries Invisíveis · Estúdio Invisível · Inscrições fechadas no momento.</footer>
+  <footer>© 2026 · Séries Invisíveis · Estúdio Invisível · <span class="fechado">Inscrições fechadas no momento.</span></footer>
 
 </div>
 
