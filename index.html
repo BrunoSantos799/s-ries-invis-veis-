@@ -26,9 +26,9 @@
   --line: #253050;
   --fg: #F4F1EA;
   --muted: #A7B0C6;
-  --accent: #FFC857;
-  --accent-soft: rgba(255, 200, 87, 0.08);
-  --gold: #FF9A6A;
+  --accent: #5B8CFF;
+  --accent-soft: rgba(91, 140, 255, 0.10);
+  --gold: #8FD3FF;
   --on-accent: #0B1020;
   --ok: #7FD6A4;
   --error: #FF8A80;
@@ -49,12 +49,46 @@ body {
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 img, video { max-width: 100%; }
-.wrap { max-width: 980px; margin: 0 auto; padding-block: 24px 64px; display: flex; flex-direction: column; gap: 72px; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 20px 64px; display: flex; flex-direction: column; gap: 56px; }
 .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .brand { font-family: var(--display); font-weight: 700; font-size: 19px; }
 .brand span, .accent { color: var(--accent); }
 .badge { border: 1px solid var(--gold); color: var(--gold); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; }
 .hero { display: flex; flex-direction: column; gap: 20px; max-width: 720px; }
+.nota { font-size: 14.5px; color: var(--muted); }
+.fluxo { list-style: none; margin: 0; padding: 0; display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap; }
+.fluxo li:not(.seta) {
+  flex: 1 1 180px; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 18px 20px; display: flex; flex-direction: column; gap: 2px;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+.fluxo li:not(.seta):hover { transform: translateY(-3px); border-color: var(--accent); }
+.fluxo .num {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--on-accent);
+  display: inline-flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; margin-bottom: 8px;
+}
+.fluxo strong { font-family: var(--display); font-size: 20px; }
+.fluxo span:not(.num) { color: var(--muted); font-size: 15.5px; }
+.seta { align-self: center; color: var(--accent); font-size: 26px; font-weight: 700; animation: empurra 1.4s ease-in-out infinite; }
+@keyframes empurra { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@media (max-width: 640px) {
+  .fluxo { flex-direction: column; }
+  .fluxo li:not(.seta) { flex-basis: auto; display: grid; grid-template-columns: auto 1fr; column-gap: 14px; align-items: center; padding: 14px 16px; }
+  .fluxo .num { grid-row: 1 / span 2; margin-bottom: 0; }
+  .fluxo strong { font-size: 18px; line-height: 1.25; }
+  .seta { transform: rotate(90deg); animation: none; font-size: 22px; line-height: 1; }
+}
+.produz { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.produz-label { color: var(--muted); font-size: 15px; margin-right: 4px; }
+.tag {
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 15px; font-weight: 600;
+  animation: acende 2.4s ease-in-out infinite; animation-delay: var(--d);
+}
+@keyframes acende {
+  0%, 100% { color: var(--muted); border-color: var(--line); background: transparent; }
+  25%, 45% { color: var(--on-accent); border-color: var(--accent); background: var(--accent); }
+}
+@media (prefers-reduced-motion: reduce) { .seta, .tag { animation: none; } }
 h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
 h1 { font-size: clamp(38px, 6vw, 62px); line-height: 1.04; font-weight: 700; }
 h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; font-weight: 700; }
@@ -144,29 +178,40 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13.5px
 <body>
 <div class="aviso" role="note">
   <span class="ponto" aria-hidden="true"></span>
-  <span><strong>Inscrições fechadas.</strong> A próxima abertura terá vagas limitadas. Quem está na lista de espera tem prioridade.</span>
+  <span><strong>Inscrições fechadas.</strong> Próxima abertura com vagas limitadas.</span>
 </div>
 <div class="wrap">
 
   <header class="top">
     <span class="brand">Séries <span>Invisíveis</span></span>
-    <span class="badge">INSCRIÇÕES FECHADAS</span>
   </header>
 
   <section class="hero">
-    <p class="eyebrow">Inscrições fechadas · Lista de espera aberta</p>
     <h1>O Claude escreve, desenha e anima. <span class="accent">Você só posta.</span></h1>
-    <p class="lead">Um curso para criar séries animadas para o Instagram e o TikTok que o público vota e acompanha, sem aparecer, sem desenhar e sem gravar a sua voz.</p>
-    <div class="em-breve">
-      <strong>As inscrições estão fechadas no momento.</strong>
-      <span>A próxima abertura terá vagas limitadas. Quem estiver na lista de espera é avisado antes de todo mundo e tem prioridade para garantir a vaga.</span>
-    </div>
+    <p class="lead">Aprenda a criar séries animadas para Instagram e TikTok sem aparecer, sem desenhar e sem gravar sua voz.</p>
     <div class="actions">
       <a class="btn btn-main" href="#lista">Entrar na lista prioritária</a>
       <a class="btn btn-ghost" href="#episodios">Ver os episódios</a>
     </div>
-    <div class="checks">
-      <span>✓ Sem câmera</span><span>✓ Sem editor de vídeo</span><span>✓ Feito 100% com IA</span>
+    <p class="nota">Quem entra na lista é avisado antes e tem prioridade na vaga.</p>
+  </section>
+
+  <section class="section intro">
+    <p class="eyebrow">Como funciona</p>
+    <h2>Você decide a história. <span class="accent">O Claude faz o resto.</span></h2>
+    <ol class="fluxo">
+      <li><span class="num">1</span><strong>Você escolhe</strong><span>a série e o personagem</span></li>
+      <li class="seta" aria-hidden="true">→</li>
+      <li><span class="num">2</span><strong>O Claude cria</strong><span>o episódio inteiro</span></li>
+      <li class="seta" aria-hidden="true">→</li>
+      <li><span class="num">3</span><strong>O público vota</strong><span>e volta pro próximo</span></li>
+    </ol>
+    <div class="produz" aria-label="O Claude faz roteiro, desenho, animação e legenda">
+      <span class="produz-label">O Claude faz:</span>
+      <span class="tag" style="--d:0s">✓ roteiro</span>
+      <span class="tag" style="--d:.6s">✓ desenho</span>
+      <span class="tag" style="--d:1.2s">✓ animação</span>
+      <span class="tag" style="--d:1.8s">✓ legenda</span>
     </div>
   </section>
 
